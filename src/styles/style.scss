@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;600;700;800&display=swap');
 
 $white: #fff;
 $black: #000;
@@ -107,6 +107,63 @@ button{
     }
 }
 
+.section{
+    &__h2{
+        font-size: 2.8rem;
+        line-height: 2rem;
+        position: relative;
+        padding-left: 2rem;
+        padding-right: 3rem;
+        font-weight: 700;
+        display: inline-block;
+        &::before{
+            content: '';
+            display: block;
+            width: .8rem;
+            height: 3.5rem;
+            border-radius: 5rem;
+            background: $bg-gradient-safe;
+            background: $bg-gradient;
+            position: absolute;
+            left: 0;
+            top: calc(50% - 1.7rem);
+        }
+        &::after{
+            content: '';
+            display: block;
+            width: 1.9rem;
+            height: 1.5rem;
+            background-image: url(image/arrow-right.svg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: absolute;
+            right: 0;
+            top: calc(50% - .7rem);
+        }
+        &-link{
+            color: $white;
+            text-decoration: none;
+        }
+    }
+    &__btn{
+        border: none;
+        border-radius: 10rem;
+        padding: 1.5rem 3rem;
+        font-family: 'Mulish', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        background: $bg-gradient-safe;
+        background: $bg-gradient;
+        color: $white;
+        box-shadow: 0px 4px 50px rgba($bg-gradient-safe, 0.5);
+        transition: .2s ease box-shadow;
+        margin-top: 2.5rem;
+        &:hover{
+            box-shadow: 0px 0px 0px rgba($bg-gradient-safe, 0.5);
+        }
+    }
+}
+
 .section-banner{
     border-bottom: .1rem solid #2F2E2E;
     position: relative;
@@ -183,7 +240,7 @@ button{
             border-radius: 10rem;
             padding: 1.5rem 3rem;
             font-family: 'Mulish', sans-serif;
-            font-weight: 600;
+            font-weight: 800;
             cursor: pointer;
        }
        &__btn-main{
@@ -213,10 +270,195 @@ button{
        &__btn-more{
             background-color: $white;
             color: #323232;
-            transition: .2s ease box-shadow;
+            transition: .2s ease background-color, .2s ease color;
             &:hover{
-                background-color: #C2C2C2;
+                color: $white;
+                background-color: transparent;
             }
        }
+    }
+}
+
+.movies{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.1rem;
+    margin-bottom: 3.5rem;
+    &-item{
+        box-shadow: 0px 0px 20px rgba(44, 176, 249, 0.0);
+        transition: .2s ease box-shadow;
+        border-radius: 10px;
+        //flex: 0 0 14%;
+        &:hover{
+            filter: drop-shadow(0px 0px 20px rgba(44,176,249,0.5));
+            box-shadow: 0px 0px 20px rgba(44, 176, 249, 0.5);
+        }
+    }
+    &__link{
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 30.9rem;
+        
+    }
+    &__img{
+        border-radius: 10px;
+        left: 50%;
+        top: 50%;
+        object-fit: cover;
+        position: initial;
+        transform: (-50%, -50%);
+    }
+}
+.genres{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 2.1rem;
+    &-item{
+        flex: 0 0 23.7%;
+        border-radius: 2rem;
+        padding: 3rem 1rem 3rem;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-bottom: 2.7rem;
+        &_romance{
+            background: linear-gradient(109.31deg, #FD093F 2.4%, #F383F1 100%);
+        }
+        &_drama{
+            background: linear-gradient(114.5deg, #0FFFDA 2.22%, #3CDB77 68.84%);
+        }
+        &_historical{
+            background: linear-gradient(109.31deg, #B936FF 2.4%, #57DEDA 100%);
+        }
+        &_action{
+            background: linear-gradient(109.31deg, #FD093F 2.4%, #FB1378 2.41%, #FCCB1A 100%);
+        }
+        &_sci-fi{
+            background: linear-gradient(109.31deg, #FF6472 2.4%, #FDA75D 100%);
+        }
+        &_horror{
+            background: linear-gradient(110.16deg, #13547A 2.37%, #3CDB77 96.77%);
+        }
+        &_comedy{
+            background: linear-gradient(109.5deg, #FFF77B 2.22%, #FFBF42 50%);
+        }
+        &_documentary{
+            background: linear-gradient(109.31deg, #1FA2FF 2.4%, #1F535C 97.46%);
+        }
+    }
+    &-icon{
+        position: relative;
+        overflow: hidden;
+        height: 7rem;
+    }
+    &__image{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        object-fit: cover;
+    }
+    &__title{
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin: .2rem 0 0 0;
+    }
+}
+
+.actors{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 2.1rem;
+    &-item{
+        flex: 0 0 14%;
+        border-radius: 30px;
+    }
+    &__img{
+        border-radius: 20rem;
+        width: 19rem;
+        height: 19rem;
+        position: absolute;
+        left: 50;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+    &__link{
+        overflow: hidden;
+        position: relative;
+        width: 19rem;
+        height: 19rem;
+        display: block;
+    }
+}
+
+.marketing{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 2.1rem;
+    margin-bottom: 4rem;
+    &-item{
+        flex: 0 0 50%;
+        border-radius: 2rem;
+        &:first-child{
+            .marketing__link{
+                border-radius: 2rem 0 0 2rem;
+            }
+        }
+        &:last-child{
+            .marketing__link{
+                border-radius: 0 2rem 2rem 0;
+            }
+        }
+    }
+    &__img{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+    &__link{
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 34.1rem;
+        display: block;
+    }
+}
+footer{
+    background-color: #101012;
+    padding: 7rem 0 5rem;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+    max-width: 144rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    &-list{
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        &__item{
+            margin-bottom: 2rem;
+        }
+        &__link{
+            font-size: 1.8rem;
+            color: #c2c2c2;
+            text-decoration: none;
+            font-weight: 600;
+        }
     }
 }
