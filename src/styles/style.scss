@@ -5,6 +5,10 @@ $black: #000;
 $bg-gradient: linear-gradient(151deg, rgba(50, 108, 255, 1) 0%, rgba(38, 255, 242, 1) 100%);
 $bg-gradient-safe: rgb(50, 108, 255);
 
+*{
+    transition: all 0.2s linear;
+}
+
 html{
     font-size: 10px;
 }
@@ -17,10 +21,12 @@ body {
     font-family: 'Mulish', sans-serif;
 }
 
-button{
+a,button{
     &:focus{
         outline: none;
     }
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
 }
 
 .container{
@@ -40,6 +46,47 @@ button{
     padding-right: 1.5rem;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+    @media (max-width: 768px){
+        &__logo{
+            img{
+                width: 100px;
+            }
+        }
+    
+        &.active{
+            
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+    
+            opacity: 1;
+            background-color: #010101;
+            
+            .header__inner{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                overflow: auto;
+            }
+    
+            .header__logo{
+                position: absolute;
+                top: 15px;
+                left: 20px;
+                z-index: 11;
+            }
+        }
+    }
+    
+    @media (min-width: 0) and (max-width: 850px) and (orientation: landscape){
+        &.active .header__inner{
+            justify-content: flex-start;
+        }
+    }
+    
 }
 
 .nav{
@@ -57,6 +104,9 @@ button{
         transition: 0.2s ease color;
         &:hover{
             color: rgba($white, 1);
+            &::after{
+                opacity: 1;
+           }  
         }
         &::after{
             content: '';
@@ -68,6 +118,7 @@ button{
             border-radius: .5rem;
             background: $bg-gradient-safe;
             background: $bg-gradient;
+            transition: opacity .2s linear;
         }
         &.active{
            color: rgba($white, 1.0);  
@@ -76,8 +127,53 @@ button{
            }    
         }
     }
-}
+    @media (max-width: 768px){
+        display: none;
+        
+        &.active{
+            display: block;
+            margin-bottom: 40px;
 
+            .nav__list{
+                flex-direction: column;
+            }
+
+            .nav__item{
+                margin-bottom: 40px;
+                text-align: center;
+                margin-right: 0;
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+            .nav__link{
+                font-size: 35px;
+            }
+
+        }
+    }
+
+    @media (min-width: 0) and (max-width: 850px){
+        &.active{
+            .nav__link{
+                font-size: 20px;
+            }
+        }
+    }
+}
+.fixed-top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+header.fixed-top.active{
+    
+        background: $black;
+    
+}
 .control{
     display: flex;
     align-items: center;
@@ -92,6 +188,9 @@ button{
         display: block;
         background-size: cover;
         background-repeat: no-repeat;
+        &:hover{transform: scale(1.1);
+        }
+       
         &_search{
             width: 1.8rem;
             height: 1.8rem;
@@ -156,9 +255,10 @@ button{
         background: $bg-gradient;
         color: $white;
         box-shadow: 0px 4px 50px rgba($bg-gradient-safe, 0.5);
-        transition: .2s ease box-shadow;
+        //transition: .2s ease box-shadow;
         margin-top: 2.5rem;
         &:hover{
+            transform: scale(1.1);
             box-shadow: 0px 0px 0px rgba($bg-gradient-safe, 0.5);
         }
     }
@@ -242,6 +342,11 @@ button{
             font-family: 'Mulish', sans-serif;
             font-weight: 800;
             cursor: pointer;
+            // -webkit-transition: -webkit-transform .2s linear,-webkit-box-shadow .2s linear;
+            // transition: -webkit-transform .2s linear,-webkit-box-shadow .2s linear;
+           
+            // transition: transform .2s linear,box-shadow .2s linear;
+            // transition: transform .2s linear,box-shadow .2s linear,-webkit-transform .2s linear,-webkit-box-shadow .2s linear;
        }
        &__btn-main{
             background: $bg-gradient-safe;
@@ -251,9 +356,13 @@ button{
             padding-left: 6rem;
             margin-right: 3rem;
             box-shadow: 0px 4px 50px rgba($bg-gradient-safe, 0.5);
-            transition: .2s ease box-shadow;
+            
             &:hover{
                 box-shadow: 0px 0px 0px rgba($bg-gradient-safe, 0.5);
+               
+                    //background-color: transparent;
+                    transform: scale(1.1);
+                
             }
             &::after{
                 content: '';
@@ -270,12 +379,77 @@ button{
        &__btn-more{
             background-color: $white;
             color: #323232;
-            transition: .2s ease background-color, .2s ease color;
+           
             &:hover{
-                color: $white;
-                background-color: transparent;
+                
+                //background-color: transparent;
+                transform: scale(1.1);
             }
        }
+    }
+    @media (max-width: 991px){
+        &__text-block-wrapper{
+            max-width: 350px;
+        }
+
+        &__title{
+            font-size: 50px;
+        }
+
+        &__btns{    
+            button:last-child{
+                margin-left: 0;
+                margin-top: 30px;
+            }
+        }
+    }
+
+    @media (max-width: 768px){
+        &__inner{
+            background: linear-gradient(rgba(#000, .5)), url('../images/banner/banner-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        &__text-block-wrapper{
+            width: 100%;
+            background: none;
+            box-shadow: none;
+        }
+
+        &__text-block{
+            top: auto;
+            bottom: 10%;
+        }
+
+        &__title{
+            font-size: 40px;
+        }
+    }
+
+    @media (max-width: 360px){
+        &__title{
+            font-size: 30px;
+        }
+
+        &__text{
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        &__btns{
+            .btn{
+                font-size: 12px;
+                padding: 8px 10px;
+                margin-bottom: 15px;
+                margin-right: 15px;
+
+                &:last-child{
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
 }
 
@@ -325,30 +499,51 @@ button{
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         margin-bottom: 2.7rem;
+        
         &_romance{
             background: linear-gradient(109.31deg, #FD093F 2.4%, #F383F1 100%);
+            color: $white;
+            text-decoration: none;
         }
         &_drama{
             background: linear-gradient(114.5deg, #0FFFDA 2.22%, #3CDB77 68.84%);
+            color: $white;
+            text-decoration: none;
         }
         &_historical{
             background: linear-gradient(109.31deg, #B936FF 2.4%, #57DEDA 100%);
+            color: $white;
+            text-decoration: none;
         }
         &_action{
             background: linear-gradient(109.31deg, #FD093F 2.4%, #FB1378 2.41%, #FCCB1A 100%);
+            color: $white;
+            text-decoration: none;
         }
         &_sci-fi{
             background: linear-gradient(109.31deg, #FF6472 2.4%, #FDA75D 100%);
+            color: $white;
+            text-decoration: none;
         }
         &_horror{
             background: linear-gradient(110.16deg, #13547A 2.37%, #3CDB77 96.77%);
+            color: $white;
+            text-decoration: none;
         }
         &_comedy{
             background: linear-gradient(109.5deg, #FFF77B 2.22%, #FFBF42 50%);
+            color: $white;
+            text-decoration: none;
         }
         &_documentary{
             background: linear-gradient(109.31deg, #1FA2FF 2.4%, #1F535C 97.46%);
+            color: $white;
+            text-decoration: none;
         }
+    }
+    &-item:hover{
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
     }
     &-icon{
         position: relative;
@@ -361,11 +556,16 @@ button{
         top: 50%;
         transform: translate(-50%,-50%);
         object-fit: cover;
+
     }
     &__title{
         font-size: 2.8rem;
         font-weight: 700;
         margin: .2rem 0 0 0;
+        &:hover{
+            color: white;
+            
+        }
     }
 }
 
@@ -388,6 +588,14 @@ button{
         top: 50%;
         transform: translate(-50%, -50%);
         object-fit: cover;
+        filter: brightness(.4);
+        -webkit-filter: brightness(.4);
+        transition: filter .2s linear;
+        &:hover
+        {
+            filter:none;
+            -webkit-filter: none;
+        }
     }
     &__link{
         overflow: hidden;
@@ -395,6 +603,18 @@ button{
         width: 19rem;
         height: 19rem;
         display: block;
+    }
+    @media (max-width: 991px){
+        &__person{
+            flex-basis: 32%;
+        }
+    }
+
+    @media (max-width: 768px){
+        &__person{
+            font-size: 16px;
+            flex: 0 0 48%;
+        }
     }
 }
 
@@ -456,9 +676,64 @@ footer{
         }
         &__link{
             font-size: 1.8rem;
-            color: #c2c2c2;
+            color: rgba($white, 0.5);
             text-decoration: none;
+            transition: 0.2s ease color;
             font-weight: 600;
+            &:hover{
+                color: rgba($white, 1);
+                &::after{
+                    opacity: 1;
+                }
+            }
+            &::after{
+                content: '';
+                opacity: 0;
+                display: block;
+                width: 100%;
+                height: .2rem;
+                margin-top: .5rem;
+                border-radius: .5rem;
+                background: $bg-gradient-safe;
+                background: $bg-gradient;
+                transition: opacity .2s linear;
+            }
+        }
+        
+    }
+
+    @media (max-width: 991px){
+        &__col{
+            &:first-child{
+                flex-basis: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+            flex-basis: 32%;
+            margin-bottom: 40px;
+        }
+    }
+
+    @media (max-width: 768px){
+        &__inner{
+            padding: 40px 0;
+        }
+        &__col{
+            &:first-child{
+                flex-basis: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+            flex-basis: 50%;
+            margin-bottom: 40px;
+        }
+    }
+
+    @media (max-width: 480px){
+        &__col{
+            flex-basis: 100%;
+            margin-bottom: 40px;
         }
     }
 }
+

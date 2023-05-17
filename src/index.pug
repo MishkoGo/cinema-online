@@ -8,6 +8,7 @@ html(lang="en")
         include css/style.css
         include styles/normilize.css
     link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css")
+
   body
     include modules/header
  
@@ -25,7 +26,7 @@ html(lang="en")
               .banner-control
                 button.banner-control__btn.banner-control__btn-main Watch
                 button.banner-control__btn.banner-control__btn-more More information  
-    section.section
+    section.section#tv
         .container
             h2.section__h2
                a(href="#").section__h2-link Trending TV Shows
@@ -54,7 +55,7 @@ html(lang="en")
                 .movies-item
                   a(href="#").movies__link    
                      img(src="image/mov-15.png", alt="").movies__img
-    section.section
+    section.section#movies
         .container
             h2.section__h2
                a(href="#").section__h2-link Trending Movies
@@ -89,35 +90,35 @@ html(lang="en")
             h2.section__h2
                a(href="#").section__h2-link Popular genres
             .genres
-                .genres-item.genres-item_romance
+                a(href="#").genres-item.genres-item_romance
                   .genres-icon
                      img(src="image/hearts.png", alt="").genres__image
                   h3.genres__title Romance
-                .genres-item.genres-item_drama
+                a(href="#").genres-item.genres-item_drama
                   .genres-icon
                      img(src="image/drama.png", alt="").genres__image
                   h3.genres__title Drama
-                .genres-item.genres-item_historical
+                a(href="#").genres-item.genres-item_historical
                   .genres-icon
                      img(src="image/historical.png", alt="").genres__image
                   h3.genres__title Historical
-                .genres-item.genres-item_action
+                a(href="#").genres-item.genres-item_action
                   .genres-icon
                      img(src="image/action.png", alt="").genres__image
                   h3.genres__title Action
-                .genres-item.genres-item_sci-fi
+                a(href="#").genres-item.genres-item_sci-fi
                   .genres-icon
                      img(src="image/sci-fi.png", alt="").genres__image
                   h3.genres__title Sci-fi
-                .genres-item.genres-item_horror
+                a(href="#").genres-item.genres-item_horror
                   .genres-icon
                      img(src="image/horror.png", alt="").genres__image
                   h3.genres__title Horror
-                .genres-item.genres-item_comedy
+                a(href="#").genres-item.genres-item_comedy
                   .genres-icon
                      img(src="image/comedy.png", alt="").genres__image
                   h3.genres__title Comedy
-                .genres-item.genres-item_documentary
+                a(href="#").genres-item.genres-item_documentary
                   .genres-icon
                      img(src="image/documentary.png", alt="").genres__image
                   h3.genres__title Documentary
@@ -158,7 +159,8 @@ html(lang="en")
                      img(src="image/banner_3.jpg", alt="").marketing__img
                .marketing-item
                   a(href="#").marketing__link 
-                     img(src="image/banner_4.jpg", alt="").marketing__img
+                     img(src="image/img.jpg", alt="").marketing__img
     
     include modules/footer
+    script(src="js/main.js")
 

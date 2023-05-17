@@ -4,6 +4,12 @@
     <title>Online Cinema</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;600;700;800&display=swap");
+* {
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
 html {
   font-size: 10px;
 }
@@ -15,7 +21,12 @@ body {
   font-family: "Mulish", sans-serif;
 }
 
-button:focus {
+a, button {
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+}
+a:focus, button:focus {
   outline: none;
 }
 
@@ -43,6 +54,47 @@ button:focus {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+@media (max-width: 768px) {
+  .header__logo img {
+    width: 100px;
+  }
+  .header.active {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    opacity: 1;
+    background-color: #010101;
+  }
+  .header.active .header__inner {
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow: auto;
+  }
+  .header.active .header__logo {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 11;
+  }
+}
+@media (min-width: 0) and (max-width: 850px) and (orientation: landscape) {
+  .header.active .header__inner {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
 
 .nav {
   display: -webkit-box;
@@ -68,6 +120,9 @@ button:focus {
 .nav-link:hover {
   color: white;
 }
+.nav-link:hover::after {
+  opacity: 1;
+}
 .nav-link::after {
   content: "";
   opacity: 0;
@@ -79,12 +134,58 @@ button:focus {
   background: rgb(50, 108, 255);
   background: -o-linear-gradient(299deg, rgb(50, 108, 255) 0%, rgb(38, 255, 242) 100%);
   background: linear-gradient(151deg, rgb(50, 108, 255) 0%, rgb(38, 255, 242) 100%);
+  -webkit-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
 }
 .nav-link.active {
   color: white;
 }
 .nav-link.active::after {
   opacity: 1;
+}
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+  .nav.active {
+    display: block;
+    margin-bottom: 40px;
+  }
+  .nav.active .nav__list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .nav.active .nav__item {
+    margin-bottom: 40px;
+    text-align: center;
+    margin-right: 0;
+  }
+  .nav.active .nav__item:last-child {
+    margin-bottom: 0;
+  }
+  .nav.active .nav__link {
+    font-size: 35px;
+  }
+}
+@media (min-width: 0) and (max-width: 850px) {
+  .nav.active .nav__link {
+    font-size: 20px;
+  }
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+header.fixed-top.active {
+  background: #000;
 }
 
 .control {
@@ -106,6 +207,11 @@ button:focus {
   display: block;
   background-size: cover;
   background-repeat: no-repeat;
+}
+.control-btn:hover {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
 }
 .control-btn_search {
   width: 1.8rem;
@@ -171,12 +277,12 @@ button:focus {
   color: #fff;
   -webkit-box-shadow: 0px 4px 50px rgba(50, 108, 255, 0.5);
           box-shadow: 0px 4px 50px rgba(50, 108, 255, 0.5);
-  -webkit-transition: 0.2s ease box-shadow;
-  -o-transition: 0.2s ease box-shadow;
-  transition: 0.2s ease box-shadow;
   margin-top: 2.5rem;
 }
 .section__btn:hover {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
   -webkit-box-shadow: 0px 0px 0px rgba(50, 108, 255, 0.5);
           box-shadow: 0px 0px 0px rgba(50, 108, 255, 0.5);
 }
@@ -268,13 +374,13 @@ button:focus {
   margin-right: 3rem;
   -webkit-box-shadow: 0px 4px 50px rgba(50, 108, 255, 0.5);
           box-shadow: 0px 4px 50px rgba(50, 108, 255, 0.5);
-  -webkit-transition: 0.2s ease box-shadow;
-  -o-transition: 0.2s ease box-shadow;
-  transition: 0.2s ease box-shadow;
 }
 .banner-control__btn-main:hover {
   -webkit-box-shadow: 0px 0px 0px rgba(50, 108, 255, 0.5);
           box-shadow: 0px 0px 0px rgba(50, 108, 255, 0.5);
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
 }
 .banner-control__btn-main::after {
   content: "";
@@ -290,13 +396,65 @@ button:focus {
 .banner-control__btn-more {
   background-color: #fff;
   color: #323232;
-  -webkit-transition: 0.2s ease background-color, 0.2s ease color;
-  -o-transition: 0.2s ease background-color, 0.2s ease color;
-  transition: 0.2s ease background-color, 0.2s ease color;
 }
 .banner-control__btn-more:hover {
-  color: #fff;
-  background-color: transparent;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+@media (max-width: 991px) {
+  .banner__text-block-wrapper {
+    max-width: 350px;
+  }
+  .banner__title {
+    font-size: 50px;
+  }
+  .banner__btns button:last-child {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .banner__inner {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5))), url("../images/banner/banner-bg.jpg");
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.5)), url("../images/banner/banner-bg.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5)), url("../images/banner/banner-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .banner__text-block-wrapper {
+    width: 100%;
+    background: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .banner__text-block {
+    top: auto;
+    bottom: 10%;
+  }
+  .banner__title {
+    font-size: 40px;
+  }
+}
+@media (max-width: 360px) {
+  .banner__title {
+    font-size: 30px;
+  }
+  .banner__text {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .banner__btns .btn {
+    font-size: 12px;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+  }
+  .banner__btns .btn:last-child {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .movies {
@@ -372,34 +530,54 @@ button:focus {
 .genres-item_romance {
   background: -o-linear-gradient(340.69deg, #FD093F 2.4%, #F383F1 100%);
   background: linear-gradient(109.31deg, #FD093F 2.4%, #F383F1 100%);
+  color: #fff;
+  text-decoration: none;
 }
 .genres-item_drama {
   background: -o-linear-gradient(335.5deg, #0FFFDA 2.22%, #3CDB77 68.84%);
   background: linear-gradient(114.5deg, #0FFFDA 2.22%, #3CDB77 68.84%);
+  color: #fff;
+  text-decoration: none;
 }
 .genres-item_historical {
   background: -o-linear-gradient(340.69deg, #B936FF 2.4%, #57DEDA 100%);
   background: linear-gradient(109.31deg, #B936FF 2.4%, #57DEDA 100%);
+  color: #fff;
+  text-decoration: none;
 }
 .genres-item_action {
   background: -o-linear-gradient(340.69deg, #FD093F 2.4%, #FB1378 2.41%, #FCCB1A 100%);
   background: linear-gradient(109.31deg, #FD093F 2.4%, #FB1378 2.41%, #FCCB1A 100%);
+  color: #fff;
+  text-decoration: none;
 }
 .genres-item_sci-fi {
   background: -o-linear-gradient(340.69deg, #FF6472 2.4%, #FDA75D 100%);
   background: linear-gradient(109.31deg, #FF6472 2.4%, #FDA75D 100%);
+  color: #fff;
+  text-decoration: none;
 }
 .genres-item_horror {
   background: -o-linear-gradient(339.84deg, #13547A 2.37%, #3CDB77 96.77%);
   background: linear-gradient(110.16deg, #13547A 2.37%, #3CDB77 96.77%);
+  color: #fff;
+  text-decoration: none;
 }
 .genres-item_comedy {
   background: -o-linear-gradient(340.5deg, #FFF77B 2.22%, #FFBF42 50%);
   background: linear-gradient(109.5deg, #FFF77B 2.22%, #FFBF42 50%);
+  color: #fff;
+  text-decoration: none;
 }
 .genres-item_documentary {
   background: -o-linear-gradient(340.69deg, #1FA2FF 2.4%, #1F535C 97.46%);
   background: linear-gradient(109.31deg, #1FA2FF 2.4%, #1F535C 97.46%);
+  color: #fff;
+  text-decoration: none;
+}
+.genres-item:hover {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
 }
 .genres-icon {
   position: relative;
@@ -420,6 +598,9 @@ button:focus {
   font-size: 2.8rem;
   font-weight: 700;
   margin: 0.2rem 0 0 0;
+}
+.genres__title:hover {
+  color: white;
 }
 
 .actors {
@@ -453,6 +634,17 @@ button:focus {
           transform: translate(-50%, -50%);
   -o-object-fit: cover;
      object-fit: cover;
+  filter: brightness(0.4);
+  -webkit-filter: brightness(0.4);
+  -webkit-transition: -webkit-filter 0.2s linear;
+  transition: -webkit-filter 0.2s linear;
+  -o-transition: filter 0.2s linear;
+  transition: filter 0.2s linear;
+  transition: filter 0.2s linear, -webkit-filter 0.2s linear;
+}
+.actors__img:hover {
+  filter: none;
+  -webkit-filter: none;
 }
 .actors__link {
   overflow: hidden;
@@ -460,6 +652,20 @@ button:focus {
   width: 19rem;
   height: 19rem;
   display: block;
+}
+@media (max-width: 991px) {
+  .actors__person {
+    -ms-flex-preferred-size: 32%;
+        flex-basis: 32%;
+  }
+}
+@media (max-width: 768px) {
+  .actors__person {
+    font-size: 16px;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 48%;
+            flex: 0 0 48%;
+  }
 }
 
 .marketing {
@@ -535,23 +741,87 @@ footer {
 }
 .footer-list__link {
   font-size: 1.8rem;
-  color: #c2c2c2;
+  color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
+  -webkit-transition: 0.2s ease color;
+  -o-transition: 0.2s ease color;
+  transition: 0.2s ease color;
   font-weight: 600;
+}
+.footer-list__link:hover {
+  color: white;
+}
+.footer-list__link:hover::after {
+  opacity: 1;
+}
+.footer-list__link::after {
+  content: "";
+  opacity: 0;
+  display: block;
+  width: 100%;
+  height: 0.2rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgb(50, 108, 255);
+  background: -o-linear-gradient(299deg, rgb(50, 108, 255) 0%, rgb(38, 255, 242) 100%);
+  background: linear-gradient(151deg, rgb(50, 108, 255) 0%, rgb(38, 255, 242) 100%);
+  -webkit-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+@media (max-width: 991px) {
+  .footer__col {
+    -ms-flex-preferred-size: 32%;
+        flex-basis: 32%;
+    margin-bottom: 40px;
+  }
+  .footer__col:first-child {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .footer__inner {
+    padding: 40px 0;
+  }
+  .footer__col {
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+    margin-bottom: 40px;
+  }
+  .footer__col:first-child {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .footer__col {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    margin-bottom: 40px;
+  }
 }/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
 /*# sourceMappingURL=normalize.min.css.map */
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css">
   </head>
   <body>
-    <header>
+    <header class="fixed-top">
       <div class="header"><a href="#"><img src="image/logo.png" alt="Logo"></a>
         <nav>
           <ul class="nav">
-            <li class="nav-item"><a class="nav-link active" href="">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="">TV Shows</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Movies</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Series</a></li>
+            <li class="nav-item"><a class="nav-link active" href="" id="home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="" id="tv">TV Shows</a></li>
+            <li class="nav-item"><a class="nav-link" href="" id="movies">Movies</a></li>
+            <li class="nav-item"><a class="nav-link" href="" id="series">Series</a></li>
           </ul>
         </nav>
         <ul class="control">
@@ -580,7 +850,7 @@ footer {
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section" id="tv">
       <div class="container">
         <h2 class="section__h2"><a class="section__h2-link" href="#">Trending TV Shows</a></h2>
         <div class="movies">
@@ -595,7 +865,7 @@ footer {
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section" id="movies">
       <div class="container">
         <h2 class="section__h2"><a class="section__h2-link" href="#">Trending Movies</a></h2>
         <div class="movies">
@@ -614,40 +884,23 @@ footer {
     <section class="section">
       <div class="container">
         <h2 class="section__h2"><a class="section__h2-link" href="#">Popular genres</a></h2>
-        <div class="genres">
-          <div class="genres-item genres-item_romance">
+        <div class="genres"><a class="genres-item genres-item_romance" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/hearts.png" alt=""></div>
-            <h3 class="genres__title">Romance</h3>
-          </div>
-          <div class="genres-item genres-item_drama">
+            <h3 class="genres__title">Romance</h3></a><a class="genres-item genres-item_drama" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/drama.png" alt=""></div>
-            <h3 class="genres__title">Drama</h3>
-          </div>
-          <div class="genres-item genres-item_historical">
+            <h3 class="genres__title">Drama</h3></a><a class="genres-item genres-item_historical" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/historical.png" alt=""></div>
-            <h3 class="genres__title">Historical</h3>
-          </div>
-          <div class="genres-item genres-item_action">
+            <h3 class="genres__title">Historical</h3></a><a class="genres-item genres-item_action" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/action.png" alt=""></div>
-            <h3 class="genres__title">Action</h3>
-          </div>
-          <div class="genres-item genres-item_sci-fi">
+            <h3 class="genres__title">Action</h3></a><a class="genres-item genres-item_sci-fi" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/sci-fi.png" alt=""></div>
-            <h3 class="genres__title">Sci-fi</h3>
-          </div>
-          <div class="genres-item genres-item_horror">
+            <h3 class="genres__title">Sci-fi</h3></a><a class="genres-item genres-item_horror" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/horror.png" alt=""></div>
-            <h3 class="genres__title">Horror</h3>
-          </div>
-          <div class="genres-item genres-item_comedy">
+            <h3 class="genres__title">Horror</h3></a><a class="genres-item genres-item_comedy" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/comedy.png" alt=""></div>
-            <h3 class="genres__title">Comedy</h3>
-          </div>
-          <div class="genres-item genres-item_documentary">
+            <h3 class="genres__title">Comedy</h3></a><a class="genres-item genres-item_documentary" href="#">
             <div class="genres-icon"><img class="genres__image" src="image/documentary.png" alt=""></div>
-            <h3 class="genres__title">Documentary</h3>
-          </div>
-        </div>
+            <h3 class="genres__title">Documentary</h3></a></div>
       </div>
     </section>
     <section class="section">
@@ -679,7 +932,7 @@ footer {
       <div class="container">
         <div class="marketing">
           <div class="marketing-item"><a class="marketing__link" href="#"> <img class="marketing__img" src="image/banner_3.jpg" alt=""></a></div>
-          <div class="marketing-item"><a class="marketing__link" href="#"> <img class="marketing__img" src="image/banner_4.jpg" alt=""></a></div>
+          <div class="marketing-item"><a class="marketing__link" href="#"> <img class="marketing__img" src="image/img.jpg" alt=""></a></div>
         </div>
       </div>
     </section>
@@ -717,5 +970,6 @@ footer {
         </div>
       </div>
     </footer>
+    <script src="js/main.js"></script>
   </body>
 </html>
